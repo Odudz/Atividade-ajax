@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Site Valorant - Mini SPA</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="conteudo">
+    <h1>Site Valorant</h1>
+    <nav>
+        <a href wm-link="series.html" wm-destino=".pagina">Agentes</a>|
+        <a href wm-link="linguagens.html" wm-destino=".pagina">Armas</a>
+    </nav>
+    <div class="pagina"></div>
+
+    <script>
+        function navegarViaAjax(url, seletor, push = true) {
+            if (!url || !seletor) return
+            const elemento = document.querySelector(seletor)
+            fetch(url)
+                .then(resp => resp.text())
+                .then(html => {
+                    elemento.innerHTML = html
+                    if (push) {
+                        history.pushState({ seletor }, "Página Ajax", url)
+                    }
+                })
+        }
+
+        document.querySelectorAll('[wm-link]').forEach(link => {
+            const url = link.getAttribute('wm-link')
+            const seletorDestino = link.getAttribute('wm-destino')
+
+            link.onclick = e => {
+                e.preventDefault()
+                navegarViaAjax(url, seletorDestino)
+            }
+        })
+
+        window.onpopstate = e => {
+            if (e.state) {
+                navegarViaAjax(window.location.href, e.state.seletor, false)
+            }
+        }
+    </script>
+</body>
+</html>
