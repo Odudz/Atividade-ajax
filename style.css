@@ -19,3 +19,7 @@ nav a:hover {
 h1 {
     color: #f00;
 }
+
+img{
+    border-radius: 10px;
+}
