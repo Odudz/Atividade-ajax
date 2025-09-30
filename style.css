@@ -20,6 +20,29 @@ h1 {
     color: #f00;
 }
 
-img{
+img {
+    display: block;
+    margin: 0 auto;
     border-radius: 10px;
 }
+
+li{
+    align-items: center;
+    justify-content: center;
+    right: 50%;
+    margin: 40px 0;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+icone{
+    align-items: left;
+    display: flex;
+}
+
+
